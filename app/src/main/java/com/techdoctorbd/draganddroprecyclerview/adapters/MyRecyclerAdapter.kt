@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.techdoctorbd.draganddroprecyclerview.models.ItemModel
 import com.techdoctorbd.draganddroprecyclerview.R
 import com.techdoctorbd.draganddroprecyclerview.helper.ItemTouchHelperAdapter
 import com.techdoctorbd.draganddroprecyclerview.helper.OnStartDragListener
@@ -13,7 +14,7 @@ import java.util.*
 
 class MyRecyclerAdapter(
     var context: Context,
-    var itemList: MutableList<String?>,
+    var itemList: MutableList<ItemModel?>,
     var listener: OnStartDragListener
 ) : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>(), ItemTouchHelperAdapter {
 
@@ -24,8 +25,8 @@ class MyRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemView.text_number.text = (position + 1).toString()
-        holder.itemView.text_description.text = itemList[position]
+        holder.itemView.text_number.text = itemList[position]!!.number.toString()
+        holder.itemView.text_description.text = itemList[position]!!.spelling
 
         //Event
         holder.itemView.item.setOnLongClickListener {
